@@ -1,7 +1,9 @@
 package com.casestudy.creditapplicationbackend.controller;
 
 import com.casestudy.creditapplicationbackend.model.CreditRequest;
+import com.casestudy.creditapplicationbackend.model.Customer;
 import com.casestudy.creditapplicationbackend.repository.CreditRequestRepository;
+import com.casestudy.creditapplicationbackend.service.CreditService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -15,12 +17,11 @@ import java.util.Optional;
 public class CreditController {
 
     @Autowired
-    private CreditRequestRepository creditRequestRepository;
+    private CreditService creditService;
 
-    @GetMapping("/creditRequests")
-    public List<CreditRequest> findAllRequests() {
+    @PostMapping("/applyForCredit")
+    public CreditRequest applyForCredit(@RequestBody Customer customer) {
 
-        List<CreditRequest> creditRequests = creditRequestRepository.findAll();
-        return creditRequests;
+        return creditService.applyForCredit(customer);
     }
 }

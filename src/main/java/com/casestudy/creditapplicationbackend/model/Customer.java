@@ -8,20 +8,26 @@ import javax.validation.constraints.Size;
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
     private Integer id;
 
     @Size(min=11,max=11)
+    @Column(name="mernis")
     private String mernis;
 
     @Size(max=75)
+    @Column(name="name")
     private String name;
 
     @Size(max=75)
+    @Column(name="surname")
     private String surname;
 
+    @Column(name="salary")
     private double salary;
 
     @Size(max=10)
+    @Column(name="phonenumtext")
     private String phoneNumText;
 
     public Integer getId() {
