@@ -1,0 +1,5 @@
+# Gap In The Rules
+
+I think there exists a gap in the description of the rules and here it is. It is not defined what to do with the application of the customers whose credit scores 
+are between 500 and 1000 and whose salaries are over 5000. As an assumption, I did not insert these applications to the database and I did not not call send SMS method
+as they are not approved nor disapproved. But still, I updated or created customer information for those applicants.
