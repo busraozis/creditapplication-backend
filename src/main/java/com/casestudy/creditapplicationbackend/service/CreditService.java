@@ -30,13 +30,13 @@ public class CreditService {
         Customer customer1 = customerRepository.findCustomerByMernis(customer.getMernis());
         if(customer1 == null){
             customer1 = new Customer();
-            customer1.setMernis(customer.getMernis());
-            customer1.setName(customer.getName());
-            customer1.setSurname(customer.getSurname());
-            customer1.setPhoneNumText(customer.getPhoneNumText());
-            customer1.setSalary(customer.getSalary());
-            customerRepository.save(customer1);
         }
+        customer1.setMernis(customer.getMernis());
+        customer1.setName(customer.getName());
+        customer1.setSurname(customer.getSurname());
+        customer1.setPhoneNumText(customer.getPhoneNumText());
+        customer1.setSalary(customer.getSalary());
+        customerRepository.save(customer1);
 
         //get credit score
         String mernis = customer.getMernis();
@@ -49,15 +49,17 @@ public class CreditService {
         }else if(score >= 500 && score < 1000){
             if(customer.getSalary() < 5000){
                 creditRequest.setResult("T");
-                creditRequest.setCreditLimit(1000);
+                creditRequest.setCreditLimit(10000);
             }
         }else if(score >= 1000){
             creditRequest.setResult("T");
             creditRequest.setCreditLimit(customer.getSalary() * CREDIT_LIMIT_MULTIPLIER);
         }
 
-        sendSms(customer.getPhoneNumText());
-        creditRequestRepository.save(creditRequest);
+        if(creditRequest.getResult() != null) {
+            sendSms(customer.getPhoneNumText());
+            creditRequestRepository.save(creditRequest);
+        }
 
         return creditRequest;
     }
