@@ -1,0 +1,44 @@
+FORMAT: 1A
+HOST: http://localhost:8081/
+
+# Credit API 
+
+Takes customers' credit request with their name, surname, mernis, salary and phone num information
+and creates customer and credit request if request is valid.
+
+## ApplyForCredit [/credit/applyForCredit]
+
+### Apply For A Credit [POST]
+
+You may create your own question using this action. It takes a JSON
+object containing mernis, name, surname, phoneNumText and salary as customer input
+information. And it returns credit request information. Result=T indicates that
+application is approved, result=F indicates that application is disapproved and 
+result = null indicates that the request is not applicable.
+
+It creates customer and creditrequest record in the related db tables.
+
++ Request (application/json)
+
+        {
+            "mernis" : "18111111417",
+            "name"   : "busra",
+            "surname": "ozis",
+            "phoneNumText" : "5555755585",
+            "salary" : 3000.0
+        }
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Location: /credit/applyForCredit
+
+    + Body
+
+        {
+            "id": 23,
+            "customerId": 8,
+            "result": "F",
+            "creditLimit": 0.0
+        }
