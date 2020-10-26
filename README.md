@@ -30,4 +30,27 @@ CREATE TABLE Customer
  
  Credit score is implemented with random number generator.
  
+ The application is served under http://localhost:8081
+ 
+ ## MySQL Database Queries
+
+Create DB:
+CREATE SCHEMA 'credit_application_db' DEFAULT CHARACTER SET utf8 COLLATE utf8_turkish_ci ;
+
+Create Customer Table:
+CREATE TABLE Customer
+(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ mernis CHAR(11),
+ name VARCHAR(75),
+ surname VARCHAR(75),
+ salary DECIMAL(8,2),
+ phoneNumText VARCHAR(10));
+ 
+ Create CreditRequest Table:
+ CREATE TABLE CreditRequest
+(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ customerId INT NOT NULL,
+ result CHAR(1),
+ creditLimit DECIMAL(9,2));
+ 
  
